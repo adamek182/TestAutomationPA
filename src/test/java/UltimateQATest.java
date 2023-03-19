@@ -1,22 +1,27 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-// modyfikatory dostepu w Java
-// różnica pomiędzy klasą, interfejsem, a klasą abstrakcyjną
-public class UltimateQATest {
-    String projectLocation = System.getProperty("user.dir");
-
-    String ultimateQAURL = "https://ultimateqa.com/simple-html-elements-for-automation/";
-
+public class UltimateQATest extends PageSetUp{
     @Test
     public void testOne() {
-        //biblioteka WebdriverManager - io.github.bonigarcia
-        System.setProperty("webdriver.chrome.driver", projectLocation + "/resources/chromedriver.exe");
+        WebElement button = driver.findElement(By.id("idExample"));
+                button.click();
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(ultimateQAURL);
+                WebElement buttonSuccess = driver.findElement(By.className("entry-title"));
+                //import static
+        Assertions.assertEquals("Button success", buttonSuccess.getText());
+
+        @Test
+                public void testTwo() {
+            WebElement nameInput = driver.findElement(By.id("et_pb_contact_name_0"));
+                    nameInput.sendKeys("Piotr");
+            WebElement emailInput = driver.findElement(By.id("et_pb_contact_email_0"));
+            emailInput.sendKeys("tester@tester.pl");
+        }
+
+
     }
 
 
